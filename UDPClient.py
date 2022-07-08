@@ -11,9 +11,9 @@ PORT_UPPER_BOUND = 5000
 
 
 def udp_client(serverName, serverPort):
-    message = raw_input('Input lowercase sentence:')
+    message = input('Input lowercase sentence:')
     clientSocket = socket(AF_INET, SOCK_DGRAM)
-    clientSocket.sendto(message, (serverName, serverPort))
+    clientSocket.sendto(message.encode(), (serverName, serverPort))
     modifiedMsg, serverAddr = clientSocket.recvfrom(BUFFER_SIZE)
     print (modifiedMsg)
     clientSocket.close()
@@ -21,12 +21,12 @@ def udp_client(serverName, serverPort):
 
 # The function checks user-entered parameters for client work
 def check_client_params(serverName, portNumber):
-    if int(sys.argv[2]) > 5000 or int (sys.argv[2]) < 1024:
+    if int(portNumber) > PORT_UPPER_BOUND or int (portNumber) < PORT_LOWER_BOUND:
         print("Port number invalid. Port number should be in range (1024, 5000).")
         return False
     try:
-        socket.gethostbyname(sys.argv[1])
-    except socket.error:
+        gethostbyname(serverName)
+    except error:
         print("Invalid host name. Exiting.")
         return False
     return True
@@ -44,7 +44,7 @@ def udp_server(serverPort):
 
 # The function checks user-entered parameters for server work
 def check_server_params(serverPort):
-    if int(sys.argv[1]) > 5000 or int (sys.argv[1]) < 1024:
+    if int(serverPort) > PORT_UPPER_BOUND or int (serverPort) < PORT_LOWER_BOUND:
         print("Port number invalid. Port number should be in range (1024, 5000).")
         return False
     return True        
