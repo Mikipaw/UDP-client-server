@@ -78,5 +78,5 @@ if __name__ == '__main__':
             print("Please, enter \"python UDPClient -help\" to get instructions")
 
     else:
-        print("Invalid input! The programm expects 1 or 2 params, but {} were given").format(len(sys.argv) - 1)
+        print("Invalid input! The programm expects 1 or 2 params, but {} were given".format(len(sys.argv) - 1))
         print("Please, enter \"python UDPClient -help\" to get instructions")
